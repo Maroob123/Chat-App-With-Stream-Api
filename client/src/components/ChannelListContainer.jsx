@@ -3,29 +3,105 @@ import { ChannelList, useChatContext } from 'stream-chat-react';
 import Cookies from 'universal-cookie';
 
 import { ChannelSearch, TeamChannelList, TeamChannelPreview } from './';
-import HospitalIcon from '../assets/hospital.png'
-import LogoutIcon from '../assets/logout.png'
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Logout from '@mui/icons-material/Logout';
+
+
+
 
 const cookies = new Cookies();
 
-const SideBar = ({ logout }) => (
-    <div className="channel-list__sidebar">
-        <div className="channel-list__sidebar__icon1">
-            <div className="icon1__inner">
-                <img src={HospitalIcon} alt="Hospital" width="30" />
-            </div>
-        </div>
-        <div className="channel-list__sidebar__icon2">
-            <div className="icon1__inner" onClick={logout}>
-                <img src={LogoutIcon} alt="Logout" width="30" />
-            </div>
-        </div>
-    </div>
-);
+// const SideBar = ({ logout }) => (
+//     <div className="channel-list__sidebar">
+//         <div className="channel-list__sidebar__icon1">
+//             <div className="icon1__inner">
+//                 <img src={HospitalIcon} alt="Hospital" width="30" />
+//             </div>
+//         </div>
+//         <div className="channel-list__sidebar__icon2">
+//             <div className="icon1__inner" onClick={logout}>
+//                 <img src={LogoutIcon} alt="Logout" width="30" />
+//             </div>
+//         </div>
+//     </div>
+// );
 
-const CompanyHeader = () => (
+const MenuCustom = ({logout}) =>{
+    const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+    return(
+        <>
+        <IconButton
+            onClick={handleClick}
+            size="small"
+            sx={{ ml: 2 }}
+            aria-controls={open ? 'account-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            style={{color: 'white'}}
+          >
+          <MoreVertIcon />
+          </IconButton>
+          <Menu
+          anchorEl={anchorEl}
+          id="account-menu"
+          open={open}
+          onClose={handleClose}
+          onClick={handleClose}
+          PaperProps={{
+            elevation: 0,
+            sx: {
+              overflow: 'visible',
+              filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+              mt: 1.5,
+              '& .MuiAvatar-root': {
+                width: 32,
+                height: 32,
+                ml: -0.5,
+                mr: 1,
+              },
+              '&:before': {
+                content: '""',
+                display: 'block',
+                position: 'absolute',
+                top: 0,
+                right: 14,
+                width: 10,
+                height: 10,
+                bgcolor: 'background.paper',
+                transform: 'translateY(-50%) rotate(45deg)',
+                zIndex: 0,
+              },
+            },
+          }}
+          transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        >
+            <MenuItem onClick={logout}>
+          <ListItemIcon>
+            <Logout fontSize="small" />
+          </ListItemIcon>
+          Logout
+        </MenuItem>
+    </Menu>
+     </>
+    )
+}
+
+const CompanyHeader = ({logout}) => (
     <div className="channel-list__header">
-        <p className="channel-list__header__text">Medical Pager</p>
+        <p className="channel-list__header__text">Buddies</p>
+        <MenuCustom logout ={logout}/>
     </div>
 )
 
@@ -56,9 +132,9 @@ const ChannelListContent = ({ isCreating, setIsCreating, setCreateType, setIsEdi
 
     return (
         <>
-            <SideBar logout={logout} />
+            {/* <SideBar logout={logout} /> */}
             <div className="channel-list__list__wrapper">
-                <CompanyHeader />
+                <CompanyHeader logout={logout} />
                 <ChannelSearch setToggleContainer={setToggleContainer} />
                 <ChannelList 
                     filters={filters}
@@ -126,9 +202,8 @@ const ChannelListContainer = ({ setCreateType, setIsCreating, setIsEditing }) =>
               />
             </div>
 
-            <div className="channel-list__container-responsive"
-                style={{ left: toggleContainer ? "0%" : "-89%", backgroundColor: "#005fff"}}
-            >
+            <div className="channel-list__container-responsive">
+                 {/* style={{ left: toggleContainer ? "0%" : "-89%", backgroundColor: "#005fff"}} */}
                 <div className="channel-list__container-toggle" onClick={() => setToggleContainer((prevToggleContainer) => !prevToggleContainer)}>
                 </div>
                 <ChannelListContent 

@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
 
-import signinImage from '../assets/signup.jpg';
-
 const cookies = new Cookies();
 
 const initialState = {
@@ -18,7 +16,7 @@ const initialState = {
 
 const Auth = () => {
     const [form, setForm] = useState(initialState);
-    const [isSignup, setIsSignup] = useState(true);
+    const [isSignup, setIsSignup] = useState(false);
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -143,9 +141,6 @@ const Auth = () => {
                         </p>
                     </div>
                 </div> 
-            </div>
-            <div className="auth__form-container_image">
-                <img src={signinImage} alt="sign in" />
             </div>
         </div>
     )
