@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
+import { Button , CircularProgress} from '@mui/material';
+import { blue } from '@mui/material/colors';
 
 const cookies = new Cookies();
 
@@ -16,6 +18,7 @@ const initialState = {
 
 const Auth = () => {
     const [form, setForm] = useState(initialState);
+    const [loading, setLoading] = useState(false);
     const [isSignup, setIsSignup] = useState(false);
 
     const handleChange = (e) => {
@@ -24,7 +27,7 @@ const Auth = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        setLoading(true);
         const { username, password, phoneNumber, avatarURL } = form;
 
         const URL = 'http://localhost:5000/auth';
@@ -38,7 +41,7 @@ const Auth = () => {
         cookies.set('fullName', fullName);
         cookies.set('userId', userId);
 
-        if(isSignup) {
+        if (isSignup) {
             cookies.set('phoneNumber', phoneNumber);
             cookies.set('avatarURL', avatarURL);
             cookies.set('hashedPassword', hashedPassword);
@@ -50,6 +53,14 @@ const Auth = () => {
     const switchMode = () => {
         setIsSignup((prevIsSignup) => !prevIsSignup);
     }
+    const buttonSx = {
+        ...(blue && {
+            bgcolor: blue[500],
+            '&:hover': {
+                bgcolor: blue[700],
+            },
+        }),
+    };
 
     return (
         <div className="auth__form-container">
@@ -60,8 +71,8 @@ const Auth = () => {
                         {isSignup && (
                             <div className="auth__form-container_fields-content_input">
                                 <label htmlFor="fullName">Full Name</label>
-                                <input 
-                                    name="fullName" 
+                                <input
+                                    name="fullName"
                                     type="text"
                                     placeholder="Full Name"
                                     onChange={handleChange}
@@ -71,19 +82,19 @@ const Auth = () => {
                         )}
                         <div className="auth__form-container_fields-content_input">
                             <label htmlFor="username">Username</label>
-                                <input 
-                                    name="username" 
-                                    type="text"
-                                    placeholder="Username"
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
+                            <input
+                                name="username"
+                                type="text"
+                                placeholder="Username"
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
                         {isSignup && (
                             <div className="auth__form-container_fields-content_input">
                                 <label htmlFor="phoneNumber">Phone Number</label>
-                                <input 
-                                    name="phoneNumber" 
+                                <input
+                                    name="phoneNumber"
                                     type="text"
                                     placeholder="Phone Number"
                                     onChange={handleChange}
@@ -94,8 +105,8 @@ const Auth = () => {
                         {isSignup && (
                             <div className="auth__form-container_fields-content_input">
                                 <label htmlFor="avatarURL">Avatar URL</label>
-                                <input 
-                                    name="avatarURL" 
+                                <input
+                                    name="avatarURL"
                                     type="text"
                                     placeholder="Avatar URL"
                                     onChange={handleChange}
@@ -104,43 +115,55 @@ const Auth = () => {
                             </div>
                         )}
                         <div className="auth__form-container_fields-content_input">
-                                <label htmlFor="password">Password</label>
-                                <input 
-                                    name="password" 
-                                    type="password"
-                                    placeholder="Password"
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
+                            <label htmlFor="password">Password</label>
+                            <input
+                                name="password"
+                                type="password"
+                                placeholder="Password"
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
                         {isSignup && (
                             <div className="auth__form-container_fields-content_input">
                                 <label htmlFor="confirmPassword">Confirm Password</label>
-                                <input 
-                                    name="confirmPassword" 
+                                <input
+                                    name="confirmPassword"
                                     type="password"
                                     placeholder="Confirm Password"
                                     onChange={handleChange}
                                     required
                                 />
                             </div>
-                            )}
+                        )}
                         <div className="auth__form-container_fields-content_button">
-                            <button>{isSignup ? "Sign Up" : "Sign In"}</button>
+                            <Button
+                                variant="contained"
+                                sx={buttonSx}
+                                disabled={loading}
+                                type="submit"
+                                // onClick={()=>handleSubmit}
+                            >
+                                {isSignup ? "Sign Up" : "Sign In"}
+                                {loading && (
+                                <CircularProgress size={24}/>
+                            )}
+                            </Button>
+
                         </div>
                     </form>
                     <div className="auth__form-container_fields-account">
                         <p>
                             {isSignup
-                             ? "Already have an account?" 
-                             : "Don't have an account?"
-                             }
-                             <span onClick={switchMode}>
-                             {isSignup ? 'Sign In' : 'Sign Up'}
-                             </span>
+                                ? "Already have an account?"
+                                : "Don't have an account?"
+                            }
+                            <span onClick={switchMode}>
+                                {isSignup ? 'Sign In' : 'Sign Up'}
+                            </span>
                         </p>
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
     )
