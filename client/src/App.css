@@ -2,6 +2,8 @@
   /* --primary-color: #005fff; */
   --primary-color: #29539b !important;
   --primary-color-alpha: #005fff1a;
+  --full-width: 100%;
+  --change-layout: flex;
 }
 
 html,
@@ -172,6 +174,19 @@ body {
   .auth__form-container_fields-content_input input{
     width: 95%;
   }
+  .team-channel-header__container .css-78trlr-MuiButtonBase-root-MuiIconButton-root{
+    display: flex !important;
+  }
+  .channel-list__container{
+    width: var(--full-width) !important;
+    position: absolute;
+    right: 0;
+    z-index: 99;
+    display: var(--change-layout) !important;
+  }
+  .channel__container{
+    width: 100% !important;
+  }
 }
 
 .app__wrapper {
@@ -280,6 +295,7 @@ body {
 .channel__container {
   height: 100%;
   width: 70%;
+  transition: all ease-in-out 0.35s;
 }
 
 .str-chat__thread {
@@ -349,6 +365,7 @@ body {
 }
 
 .channel-list__container {
+  transition: all ease-in-out 0.35s;  
   width: 30%;
   display: flex;
   /* height: 800px; */
@@ -845,6 +862,9 @@ body {
   border-top-right-radius: 16px;
   z-index: 1;
 }
+.team-channel-header__container .css-78trlr-MuiButtonBase-root-MuiIconButton-root{
+  display: none;
+}
 
 .team-channel-header__channel-wrapper {
   display: flex;
@@ -941,6 +961,8 @@ body {
 
 .team-channel-list__message.loading {
   height: 115px;
+  display: flex;
+  align-items: center;
 }
 
 .team-channel-list__header {

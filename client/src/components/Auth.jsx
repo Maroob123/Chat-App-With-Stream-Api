@@ -76,6 +76,7 @@ const Auth = () => {
                                     type="text"
                                     placeholder="Full Name"
                                     onChange={handleChange}
+                                    disabled={loading}
                                     required
                                 />
                             </div>
@@ -87,6 +88,7 @@ const Auth = () => {
                                 type="text"
                                 placeholder="Username"
                                 onChange={handleChange}
+                                disabled={loading}
                                 required
                             />
                         </div>
@@ -98,6 +100,7 @@ const Auth = () => {
                                     type="text"
                                     placeholder="Phone Number"
                                     onChange={handleChange}
+                                    disabled={loading}
                                     required
                                 />
                             </div>
@@ -110,6 +113,7 @@ const Auth = () => {
                                     type="text"
                                     placeholder="Avatar URL"
                                     onChange={handleChange}
+                                    disabled={loading}
                                     required
                                 />
                             </div>
@@ -121,6 +125,7 @@ const Auth = () => {
                                 type="password"
                                 placeholder="Password"
                                 onChange={handleChange}
+                                disabled={loading}
                                 required
                             />
                         </div>
@@ -132,6 +137,7 @@ const Auth = () => {
                                     type="password"
                                     placeholder="Confirm Password"
                                     onChange={handleChange}
+                                    disabled={loading}
                                     required
                                 />
                             </div>

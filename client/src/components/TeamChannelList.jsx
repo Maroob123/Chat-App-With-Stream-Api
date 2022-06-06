@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { CircularProgress } from '@mui/material';
 import { AddChannel } from '../assets';
 
 const TeamChannelList = ({ setToggleContainer, children, error = false, loading, type, isCreating, setIsCreating, setCreateType, setIsEditing }) => {
@@ -17,12 +17,11 @@ const TeamChannelList = ({ setToggleContainer, children, error = false, loading,
         return (
             <div className="team-channel-list">
                 <p className="team-channel-list__message loading">
-                    {type === 'team' ? 'Channels' : 'Messages'} loading...
+                    {type === 'team' ? 'Channels' : 'Messages'} loading... <CircularProgress size="1rem" color='inherit' />
                 </p>
             </div>
         )
     }
-
     return (
         <div className="team-channel-list">
             <div className="team-channel-list__header">

@@ -17,7 +17,7 @@ const TeamChannelPreview = ({ setActiveChannel, setIsCreating, setIsEditing, set
         // console.log(members[0]);
 
         return (
-            <div className="channel-preview__item single">
+            <div className="channel-preview__item single" on>
                 <Avatar 
                     image={members[0]?.user?.image}
                     name={members[0]?.user?.fullName || members[0]?.user?.id}
@@ -38,9 +38,10 @@ const TeamChannelPreview = ({ setActiveChannel, setIsCreating, setIsEditing, set
             setIsCreating(false);
             setIsEditing(false);
             setActiveChannel(channel);
+            document.documentElement.style.setProperty('--full-width', "0%")
             if(setToggleContainer) {
                 setToggleContainer((prevState) => !prevState)
-            }
+            }     
         }}
         >
             {type === 'team' ? <ChannelPreview /> : <DirectPreview />}
