@@ -4,6 +4,7 @@
   --primary-color-alpha: #005fff1a;
   --full-width: 100%;
   --change-layout: flex;
+  --pos-left: 0%;
 }
 
 html,
@@ -180,7 +181,7 @@ body {
   .channel-list__container{
     width: var(--full-width) !important;
     position: absolute;
-    right: 0;
+    left: var(--pos-left);
     z-index: 99;
     display: var(--change-layout) !important;
   }

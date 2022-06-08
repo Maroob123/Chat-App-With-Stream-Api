@@ -57,7 +57,10 @@ const TeamChannelHeader = ({ setIsEditing }) => {
         <div className='team-channel-header__name-wrapper'>
           {members.map(({ user }, i) => (
             <div key={i} className='team-channel-header__name-multi'>
-              <IconButton onClick={()=>document.documentElement.style.setProperty('--full-width', "100%")}>
+              <IconButton onClick={()=>{
+                document.documentElement.style.setProperty('--full-width', "100%");
+                document.documentElement.style.setProperty('--pos-left', "0%");
+                }}>
                 <ArrowBackIcon />
               </IconButton>
               <Avatar image={user.image} name={user.fullName || user.id} size={32} />
@@ -72,9 +75,12 @@ const TeamChannelHeader = ({ setIsEditing }) => {
 
     return (
       <div className='team-channel-header__channel-wrapper'>
-        <IconButton onClick={()=>document.documentElement.style.setProperty('--full-width', "100%")}>
-          <ArrowBackIcon />
-        </IconButton>
+        <IconButton onClick={()=>{
+                document.documentElement.style.setProperty('--full-width', "100%");
+                document.documentElement.style.setProperty('--pos-left', "0%");
+                }}>
+                <ArrowBackIcon />
+              </IconButton>
         <p className='team-channel-header__name'># {channel.data.name}</p>
         <span style={{ display: 'flex' }} onClick={() => setIsEditing(true)}>
           <ChannelInfo />

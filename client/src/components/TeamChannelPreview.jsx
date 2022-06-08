@@ -38,7 +38,8 @@ const TeamChannelPreview = ({ setActiveChannel, setIsCreating, setIsEditing, set
             setIsCreating(false);
             setIsEditing(false);
             setActiveChannel(channel);
-            document.documentElement.style.setProperty('--full-width', "0%")
+            document.documentElement.style.setProperty('--full-width', "0%");
+            document.documentElement.style.setProperty('--pos-left', "-50%");
             if(setToggleContainer) {
                 setToggleContainer((prevState) => !prevState)
             }     

@@ -13,6 +13,7 @@ export const AddChannel = ({ setCreateType, setIsCreating, setIsEditing, setTogg
       setIsEditing(false);
       if(setToggleContainer) setToggleContainer((prevState) => !prevState)
       document.documentElement.style.setProperty('--full-width', "0%");
+      document.documentElement.style.setProperty('--pos-left', "-50%");
     }}
   >
     <path
