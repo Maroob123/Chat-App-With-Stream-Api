@@ -7,7 +7,7 @@
 
 ## Demo
 
->click the link [Demo](demo.com)
+>click the link [Demo](https://fnf-chat.netlify.app/)
 >use the demo account :
 ```
     UserName: demo1
