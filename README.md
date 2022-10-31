@@ -10,19 +10,22 @@
 >click the link [Demo](demo.com)
 >use the demo account :
 ```
-    Email: demo1@maroobdev.com
+    UserName: demo1
 ```
 ```
     Password: demo1happy
  ```
 >   or
 ```
-    Email: demo2@maroobdev.com
+    UserName: demo2
 ```
 ```
     Password: demo2happy
 ```
-
+>   or
+```
+    signUp
+```
 ## How To Use Code
 >Follow the steps to use the code:
 > 1. Install React JS and Node JS.
